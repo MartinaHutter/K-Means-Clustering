@@ -73,3 +73,16 @@ with tf.compat.v1.Session() as sess:
     
     plt.legend()
     plt.show()
+
+# New point
+new_point = [1, 2000, 10, 45, 79, 0.2]
+
+# Use broadcasting to add the vector to each row of the matrix
+result = centroid_values - new_point
+
+# Sum each row of the resulting matrix
+distances_to_centroids = np.sum(result, axis=1)
+closest_cluster = np.argmin(distances_to_centroids)
+
+print("New point:", new_point)
+print("Belongs to cluster:", closest_cluster)
