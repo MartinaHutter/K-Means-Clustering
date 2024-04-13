@@ -59,6 +59,7 @@ with tf.compat.v1.Session() as sess:
     
     # Print the centroid values
     print("centroids", centroid_values)
+    print("assignments", assignment_values)
 
     # Plot the results
     fig = plt.figure()
@@ -74,15 +75,11 @@ with tf.compat.v1.Session() as sess:
     plt.legend()
     plt.show()
 
-# New point
-new_point = [1, 2000, 10, 45, 79, 0.2]
+# Compute squared distances between each centroid and the new point
+squared_distances = np.sum((centroid_values[:, 2:] - new_point[2:]) ** 2, axis=1)
 
-# Use broadcasting to add the vector to each row of the matrix
-result = centroid_values - new_point
-
-# Sum each row of the resulting matrix
-distances_to_centroids = np.sum(result, axis=1)
-closest_cluster = np.argmin(distances_to_centroids)
+# Find the index of the centroid with the minimum distance (closest cluster)
+closest_cluster = np.argmin(squared_distances)
 
 print("New point:", new_point)
 print("Belongs to cluster:", closest_cluster)
