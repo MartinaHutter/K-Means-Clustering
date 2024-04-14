@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import tensorflow as tf
+import numpy as np
 
 from mpl_toolkits.mplot3d import Axes3D  # Importing this module for 3D projection
 
@@ -74,6 +75,9 @@ with tf.compat.v1.Session() as sess:
     
     plt.legend()
     plt.show()
+
+# New point
+new_point = [1, 2000, 10, 45, 79, 0.2]
 
 # Compute squared distances between each centroid and the new point
 squared_distances = np.sum((centroid_values[:, 2:] - new_point[2:]) ** 2, axis=1)
